@@ -93,48 +93,46 @@ export function DayCard({
   if (isHero) {
     return (
       <Link href={`/workout/${dayId}`} className="block px-6 mb-4 col-span-2">
-        <div className="bg-white/90 border border-primary/20 rounded-[2.5rem] p-8 dreamy-shadow relative overflow-hidden group active:scale-95 transition-all">
-          <div className="flex gap-6 items-center">
-            <div className="bg-primary/20 text-primary p-6 rounded-[2rem]">
-              <Icon size={48} strokeWidth={1.5} />
-            </div>
-            <div className="flex-1">
-              <p className="text-[11px] font-black uppercase text-primary tracking-widest mb-1">
-                UP NEXT
-              </p>
-              <div className="flex items-baseline gap-2">
-                <h3 className="text-5xl font-black text-foreground leading-none">
-                  {name.split(" ")[1]}
-                </h3>
-                <h3 className="text-xl font-bold text-foreground truncate">
-                  {name.split(":")[1] || category.split("(")[0].trim()}
-                </h3>
-              </div>
-              <p className="text-sm font-bold text-muted-foreground leading-tight mt-2 italic opacity-60">
-                {category.includes("(")
-                  ? category.split("(")[1].replace(")", "")
-                  : "Active Session"}
-              </p>
-            </div>
-            <div className="w-16 h-16 rounded-full bg-foreground text-white flex items-center justify-center group-hover:bg-primary transition-colors shadow-xl">
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m5 3 14 9-14 9V3z" />
-              </svg>
-            </div>
+        <div className="bg-gradient-to-br from-primary/90 via-primary/80 to-pastel-green/70 rounded-[2.5rem] p-8 dreamy-shadow relative overflow-hidden group active:scale-[0.98] transition-all min-h-[180px]">
+          {/* Icon at top-right */}
+          <div className="absolute top-6 right-6 bg-white/20 backdrop-blur-sm text-white p-4 rounded-[1.5rem]">
+            <Icon size={32} strokeWidth={1.5} />
           </div>
 
-          {/* Subtle background illustration hint - a faint human figure pattern could be added here */}
-          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 opacity-[0.05] pointer-events-none">
-            <Activity size={180} />
+          {/* Content stacked vertically */}
+          <div className="flex flex-col gap-1 pr-20">
+            <p className="text-[11px] font-black uppercase text-white/80 tracking-widest">
+              UP NEXT
+            </p>
+            <h3 className="text-5xl font-black text-white leading-none mt-1">
+              {name.split(" ")[1]}
+            </h3>
+            <h4 className="text-xl font-bold text-white/90 mt-1">
+              {category.split("(")[0].trim()}
+            </h4>
+            <p className="text-sm font-medium text-white/70 mt-1">
+              {category.includes("(")
+                ? category.split("(")[1].replace(")", "").split("&").join(" • ")
+                : "Start your session"}
+            </p>
+          </div>
+
+          {/* Play button at bottom-right */}
+          <div className="absolute bottom-6 right-6 w-14 h-14 rounded-full bg-white/90 text-foreground flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              stroke="none"
+            >
+              <path d="m5 3 14 9-14 9V3z" />
+            </svg>
+          </div>
+
+          {/* Subtle background decoration */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.08] pointer-events-none">
+            <Icon size={200} strokeWidth={0.5} />
           </div>
         </div>
       </Link>
