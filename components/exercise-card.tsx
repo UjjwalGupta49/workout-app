@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
 import { Exercise } from "@/lib/types";
 import { Check, ExternalLink } from "lucide-react";
+import { useLazyImage } from "@/hooks/use-lazy-image";
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -15,6 +15,10 @@ export function ExerciseCard({
   isCompleted,
   onToggleComplete,
 }: ExerciseCardProps) {
+  const { ref: imageRef, isVisible } = useLazyImage(exercise.imageUrl, {
+    rootMargin: "100% ",
+  });
+
   const getIndicatorFontSize = (text: string | number) => {
     const s = String(text);
     if (s.length > 12) return "text-[10px] leading-[1.2] px-3";
@@ -26,13 +30,15 @@ export function ExerciseCard({
   return (
     <div className="relative w-full h-full flex-shrink-0 snap-start overflow-hidden bg-black text-white">
       {/* Exercise Image Cover */}
-      <div className="absolute inset-0 z-0">
+      <div ref={imageRef} className="absolute inset-0 z-0 text-[0px]">
         {exercise.imageUrl ? (
-          <img
-            src={exercise.imageUrl}
-            alt={exercise.name}
-            className="w-full h-full object-cover opacity-80"
-          />
+          isVisible && (
+            <img
+              src={exercise.imageUrl}
+              alt={exercise.name}
+              className="w-full h-full object-cover opacity-80 transition-none"
+            />
+          )
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-pastel-blue/30 via-primary/20 to-pastel-green/30" />
         )}

@@ -14,7 +14,9 @@ export function ExerciseScroll({ workout }: ExerciseScrollProps) {
   const store = useWorkoutStore();
   const exercises = workout.exercises;
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(-1);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentIndexRef = useRef(0); // Ref for scroll calculations (avoids stale closures)
+  const isScrolling = useRef(false);
 
   const completedCount = exercises.filter(
     (e) => store.completedExercises[e.id]
@@ -22,30 +24,91 @@ export function ExerciseScroll({ workout }: ExerciseScrollProps) {
 
   const isAllComplete = completedCount === exercises.length;
 
-  const calculateCurrentIndex = useCallback(() => {
-    if (!scrollRef.current) return 0;
-    const scrollTop = scrollRef.current.scrollTop;
-    const height = scrollRef.current.clientHeight;
-    if (height === 0) return 0;
-    const index = Math.round(scrollTop / height);
-    return Math.max(0, Math.min(index, exercises.length - 1));
-  }, [exercises.length]);
+  // Scroll to a specific index
+  const scrollToIndex = useCallback(
+    (index: number) => {
+      if (!scrollRef.current) return;
+      const targetIndex = Math.max(0, Math.min(index, exercises.length - 1));
+      const height = scrollRef.current.clientHeight;
+      scrollRef.current.scrollTo({
+        top: targetIndex * height,
+        behavior: "smooth",
+      });
+      currentIndexRef.current = targetIndex; // Update ref immediately
+      setCurrentIndex(targetIndex); // Update state for UI
+    },
+    [exercises.length]
+  );
 
-  const handleScroll = useCallback(() => {
-    setCurrentIndex(calculateCurrentIndex());
-  }, [calculateCurrentIndex]);
+  // Handle wheel events to ensure single-slide scrolling
+  const handleWheel = useCallback(
+    (e: WheelEvent) => {
+      e.preventDefault();
+      if (isScrolling.current) return;
 
-  // Initialize current index on mount and when exercises change
+      isScrolling.current = true;
+      const direction = e.deltaY > 0 ? 1 : -1;
+      scrollToIndex(currentIndexRef.current + direction); // Use ref, not state
+
+      // Debounce: prevent rapid scrolling
+      setTimeout(() => {
+        isScrolling.current = false;
+      }, 600); // Slightly longer debounce
+    },
+    [scrollToIndex] // No longer depends on currentIndex
+  );
+
+  // Handle touch events for mobile swipe
+  const touchStartY = useRef(0);
+  const handleTouchStart = useCallback((e: TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (e: TouchEvent) => {
+      if (isScrolling.current) return;
+      const touchEndY = e.changedTouches[0].clientY;
+      const diff = touchStartY.current - touchEndY;
+
+      // Minimum swipe distance threshold
+      if (Math.abs(diff) > 50) {
+        isScrolling.current = true;
+        const direction = diff > 0 ? 1 : -1;
+        scrollToIndex(currentIndexRef.current + direction); // Use ref, not state
+        setTimeout(() => {
+          isScrolling.current = false;
+        }, 600);
+      }
+    },
+    [scrollToIndex] // No longer depends on currentIndex
+  );
+
+  // Attach wheel and touch event listeners
   useEffect(() => {
-    // Use a small delay to ensure the container has rendered with correct dimensions
-    const initializeIndex = () => {
-      setCurrentIndex(calculateCurrentIndex());
+    const container = scrollRef.current;
+    if (!container) return;
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    container.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+    return () => {
+      container.removeEventListener("wheel", handleWheel);
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchend", handleTouchEnd);
     };
-    initializeIndex();
-    // Also listen for resize in case dimensions change
-    window.addEventListener("resize", initializeIndex);
-    return () => window.removeEventListener("resize", initializeIndex);
-  }, [calculateCurrentIndex]);
+  }, [handleWheel, handleTouchStart, handleTouchEnd]);
+
+  // Preload the next exercise image
+  useEffect(() => {
+    const nextIdx = currentIndex + 1;
+    if (nextIdx < exercises.length && exercises[nextIdx].imageUrl) {
+      const img = new window.Image();
+      img.src = exercises[nextIdx].imageUrl;
+    }
+  }, [currentIndex, exercises]);
 
   return (
     <div className="w-full h-screen bg-black overflow-hidden relative">
@@ -98,11 +161,10 @@ export function ExerciseScroll({ workout }: ExerciseScrollProps) {
         })}
       </div>
 
-      {/* Infinite Scroll Container (Vertical snapped scroll) */}
+      {/* Scroll Container (Programmatic single-slide control) */}
       <div
         ref={scrollRef}
-        onScroll={handleScroll}
-        className="w-full h-full overflow-y-auto overflow-x-hidden snap-y snap-mandatory scrollbar-hide"
+        className="w-full h-full overflow-hidden scrollbar-hide"
       >
         {exercises.map((exercise) => (
           <ExerciseCard
