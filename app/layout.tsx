@@ -13,13 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aura Gym | Mindful Movement",
+  title: "Osprey | Mindful Movement",
   description: "A calming space for your daily workout routine",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Aura Gym",
+    title: "Osprey",
   },
 };
 
