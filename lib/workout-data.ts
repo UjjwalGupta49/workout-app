@@ -4,30 +4,8 @@ export const WORKOUT_ROUTINE: WorkoutDay[] = [
   {
     id: 1,
     name: "Day 01",
-    category: "Upper Body A (Push & V-Taper)",
+    category: "Upper Body A (Chest Focus & Vertical Pull)",
     exercises: [
-      {
-        id: "1-3",
-        name: "Wide-Grip Overhand Pull-ups",
-        description: "Aim for chest-to-bar. Full range of motion.",
-        sets: "2–3",
-        reps: "Failure",
-        tags: ["Back", "V-Taper"],
-        infoUrl: "https://strengthlevel.com/strength-standards/pull-ups",
-        imageUrl:
-          "https://static.strengthlevel.com/images/exercises/pull-ups/pull-ups-800.avif",
-      },
-      {
-        id: "1-4",
-        name: "Dips",
-        description: "Perform full reps or static holds for 30–60s.",
-        sets: 3,
-        hold: "30–60s",
-        tags: ["Chest", "Triceps"],
-        infoUrl: "https://www.youtube.com/shorts/P5TlJiu68lA",
-        imageUrl:
-          "https://static.strengthlevel.com/images/exercises/dips/dips-800.avif",
-      },
       {
         id: "1-1",
         name: "Incline Dumbbell Bench Press",
@@ -53,15 +31,15 @@ export const WORKOUT_ROUTINE: WorkoutDay[] = [
           "https://static.strengthlevel.com/images/exercises/decline-bench-press/decline-bench-press-800.avif",
       },
       {
-        id: "1-2",
-        name: "Chest-Supported Lateral Raises",
-        description: "Lead with elbows for side delts. Keep tension.",
-        sets: "2–3",
-        reps: "12–15",
-        tags: ["Shoulders", "Delts"],
-        infoUrl: "https://www.youtube.com/shorts/FW8mnBUyFGM",
+        id: "1-4",
+        name: "Dips",
+        description: "Perform full reps or static holds for 30–60s.",
+        sets: 3,
+        hold: "30–60s",
+        tags: ["Chest", "Triceps"],
+        infoUrl: "https://www.youtube.com/shorts/P5TlJiu68lA",
         imageUrl:
-          "https://api.smartworkout.app/asset/image/dca6649c-371e-396c-2175-2b2a04ea1628",
+          "https://static.strengthlevel.com/images/exercises/dips/dips-800.avif",
       },
       {
         id: "1-6",
@@ -74,6 +52,17 @@ export const WORKOUT_ROUTINE: WorkoutDay[] = [
         infoUrl: "https://strengthlevel.com/strength-standards/dumbbell-fly",
         imageUrl:
           "https://static.strengthlevel.com/images/exercises/dumbbell-fly/dumbbell-fly-800.avif",
+      },
+      {
+        id: "1-3",
+        name: "Wide-Grip Overhand Pull-ups",
+        description: "Aim for chest-to-bar. Full range of motion.",
+        sets: "2–3",
+        reps: "Failure",
+        tags: ["Back", "V-Taper"],
+        infoUrl: "https://strengthlevel.com/strength-standards/pull-ups",
+        imageUrl:
+          "https://static.strengthlevel.com/images/exercises/pull-ups/pull-ups-800.avif",
       },
       {
         id: "1-5",
@@ -166,7 +155,7 @@ export const WORKOUT_ROUTINE: WorkoutDay[] = [
   {
     id: 3,
     name: "Day 03",
-    category: "Upper Body B (Pull & Skill Focus)",
+    category: "Upper Body B (Pull Focus & Arms)",
     exercises: [
       {
         id: "3-6",
@@ -180,17 +169,6 @@ export const WORKOUT_ROUTINE: WorkoutDay[] = [
           "https://static.strengthlevel.com/images/exercises/lat-pulldown/lat-pulldown-800.avif",
       },
       {
-        id: "3-2",
-        name: "Archer Push-ups",
-        description: "High-level stabilization and chest focus.",
-        sets: 3,
-        reps: "Failure",
-        tags: ["Chest", "Skill"],
-        infoUrl: "https://www.youtube.com/shorts/OskpsD1eDWw",
-        imageUrl:
-          "https://api.smartworkout.app/asset/image/e88a5681-e070-398d-6302-9f242439109a",
-      },
-      {
         id: "3-1",
         name: "Underhand Chin-up",
         description: "Focus on biceps and lats. Squeeze at the top.",
@@ -200,6 +178,17 @@ export const WORKOUT_ROUTINE: WorkoutDay[] = [
         infoUrl: "https://strengthlevel.com/strength-standards/chin-ups",
         imageUrl:
           "https://static.strengthlevel.com/images/exercises/chin-ups/chin-ups-800.avif",
+      },
+      {
+        id: "3-2",
+        name: "Archer Push-ups",
+        description: "High-level stabilization and chest focus.",
+        sets: 3,
+        reps: "Failure",
+        tags: ["Chest", "Skill"],
+        infoUrl: "https://www.youtube.com/shorts/OskpsD1eDWw",
+        imageUrl:
+          "https://api.smartworkout.app/asset/image/e88a5681-e070-398d-6302-9f242439109a",
       },
       {
         id: "3-7",
@@ -214,6 +203,31 @@ export const WORKOUT_ROUTINE: WorkoutDay[] = [
           "https://static.strengthlevel.com/images/exercises/dumbbell-tricep-extension/dumbbell-tricep-extension-800.avif",
       },
       {
+        id: "3-3",
+        name: "Dumbbell Reverse Curl",
+        description:
+          "Overhand grip. Targets Brachioradialis for forearm thickness.",
+        sets: 3,
+        reps: "12–15",
+        tags: ["Arms", "Forearms"],
+        infoUrl: "https://www.youtube.com/shorts/ZieE_Skz6AM",
+        imageUrl:
+          "https://static.strengthlevel.com/images/exercises/dumbbell-reverse-curl/dumbbell-reverse-curl-800.avif",
+      },
+      {
+        id: "3-8",
+        name: "Seated Dumbbell Wrist Curls",
+        description:
+          "Forearms on bench, palms up. Curl wrist only. Squeeze flexors.",
+        sets: 3,
+        reps: "15–20",
+        tags: ["Forearms", "Grip"],
+        infoUrl:
+          "https://strengthlevel.com/strength-standards/dumbbell-wrist-curl",
+        imageUrl:
+          "https://static.strengthlevel.com/images/exercises/dumbbell-wrist-curl/dumbbell-wrist-curl-800.avif",
+      },
+      {
         id: "3-5",
         name: "Hanging Knee Raises",
         description: "A regression to the L-Sit. Raise knees to chest.",
@@ -225,34 +239,12 @@ export const WORKOUT_ROUTINE: WorkoutDay[] = [
         imageUrl:
           "https://static.strengthlevel.com/images/exercises/hanging-knee-raise/hanging-knee-raise-800.avif",
       },
-      {
-        id: "3-3",
-        name: "Dumbbell Reverse Curl",
-        description: "Reverse grip for thicker brachioradialis.",
-        sets: 3,
-        reps: "12–15",
-        tags: ["Arms", "Forearms"],
-        infoUrl: "https://www.youtube.com/shorts/ZieE_Skz6AM",
-        imageUrl:
-          "https://static.strengthlevel.com/images/exercises/dumbbell-reverse-curl/dumbbell-reverse-curl-800.avif",
-      },
-      {
-        id: "3-4",
-        name: "Farmer's Walk",
-        description: "Walk with heavy weights. Maintain posture.",
-        sets: 3,
-        hold: "30–60s",
-        tags: ["Grip", "Forearms"],
-        infoUrl: "https://www.youtube.com/shorts/1uOs1hP3u4A",
-        imageUrl:
-          "https://api.smartworkout.app/asset/image/d0872413-3f0d-4ca1-823e-3b8a5ba41692",
-      },
     ],
   },
   {
     id: 4,
     name: "Day 04",
-    category: "Lower Body B (Hamstrings & Obliques)",
+    category: "Lower Body B (Hamstrings & Posterior Chain)",
     exercises: [
       {
         id: "4-5",
@@ -309,6 +301,85 @@ export const WORKOUT_ROUTINE: WorkoutDay[] = [
         infoUrl: "https://www.youtube.com/shorts/xvw_r7VZ2S8",
         imageUrl:
           "https://static.strengthlevel.com/images/exercises/toes-to-bar/toes-to-bar-800.avif",
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: "Day 05",
+    category: "Neck & Shoulders",
+    exercises: [
+      {
+        id: "5-1",
+        name: "Seated Dumbbell Shoulder Press",
+        description:
+          "Core tight, press overhead without arching back excessively. Control descent.",
+        sets: 3,
+        reps: "8–12",
+        tags: ["Shoulders", "Compound"],
+        infoUrl:
+          "https://strengthlevel.com/strength-standards/dumbbell-shoulder-press",
+        imageUrl:
+          "https://static.strengthlevel.com/images/exercises/dumbbell-shoulder-press/dumbbell-shoulder-press-800.avif",
+      },
+      {
+        id: "1-2",
+        name: "Chest-Supported Lateral Raises",
+        description: "Lead with elbows for side delts. Keep tension.",
+        sets: "3–4",
+        reps: "12–15",
+        tags: ["Shoulders", "Delts"],
+        infoUrl: "https://www.youtube.com/shorts/FW8mnBUyFGM",
+        imageUrl:
+          "https://api.smartworkout.app/asset/image/dca6649c-371e-396c-2175-2b2a04ea1628",
+      },
+      {
+        id: "1-8",
+        name: "Heavy Dumbbell Shrugs",
+        description:
+          "Traps focus. Shrug straight up to ears, pause, lower slowly. Go heavy.",
+        sets: 4,
+        reps: "10–12",
+        tags: ["Traps", "Yoke"],
+        infoUrl: "https://strengthlevel.com/strength-standards/dumbbell-shrug",
+        imageUrl:
+          "https://static.strengthlevel.com/images/exercises/dumbbell-shrug/dumbbell-shrug-800.avif",
+      },
+      {
+        id: "2-7",
+        name: "Lying Neck Curls (Plate)",
+        description:
+          "Lie on bench, head off edge. Plate on forehead (use towel). Tuck chin to chest.",
+        sets: 3,
+        reps: "15–25",
+        tags: ["Neck", "SCM"],
+        infoUrl: "https://www.youtube.com/watch?v=dBfrlXA82C4",
+        imageUrl:
+          "https://static.strengthlevel.com/images/exercises/neck-curl/neck-curl-800.avif",
+      },
+      {
+        id: "4-6",
+        name: "Lying Neck Extensions (Plate)",
+        description:
+          "Lie prone (face down) on bench. Plate on back of head. Look up/extend neck.",
+        sets: 3,
+        reps: "15–25",
+        tags: ["Neck", "Posterior"],
+        infoUrl: "https://exrx.net/WeightExercises/Splenius/WtNeckExtension",
+        imageUrl:
+          "https://www.bodybuilding.com/images/2020/xdb/originals/xdb-93m-lying-face-down-plate-neck-resistance-m2-16x9.jpg",
+      },
+      {
+        id: "3-4",
+        name: "Farmer's Walk",
+        description:
+          "Walk with heavy weights. Maintain posture. Finisher for traps & grip.",
+        sets: 3,
+        hold: "45–60s",
+        tags: ["Grip", "Traps"],
+        infoUrl: "https://www.youtube.com/shorts/1uOs1hP3u4A",
+        imageUrl:
+          "https://api.smartworkout.app/asset/image/d0872413-3f0d-4ca1-823e-3b8a5ba41692",
       },
     ],
   },

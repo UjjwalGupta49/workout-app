@@ -8,6 +8,7 @@ import {
   Activity,
   Target,
   Zap,
+  Shield,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -33,6 +34,7 @@ export function DayCard({
     2: Activity,
     3: Target,
     4: Zap,
+    5: Shield,
   };
   const Icon = IconMap[dayId as keyof typeof IconMap] || Dumbbell;
 

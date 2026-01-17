@@ -42,57 +42,21 @@ export function RoutineGrid() {
       </div>
 
       <div className="grid grid-cols-2 gap-4 px-6">
-        {/* Top pair: Day 1 and 2 if they aren't the hero */}
-        {day1 && nextDayId !== 1 && (
-          <DayCard
-            dayId={1}
-            name={day1.name}
-            category={day1.category}
-            isCompleted={getStatus(1) === "completed"}
-          />
-        )}
-        {day2 && nextDayId !== 2 && (
-          <DayCard
-            dayId={2}
-            name={day2.name}
-            category={day2.category}
-            isCompleted={getStatus(2) === "completed"}
-          />
-        )}
-
-        {/* Hero: The current "Up Next" day */}
         {WORKOUT_ROUTINE.map((day) => {
-          if (day.id === nextDayId) {
-            return (
-              <DayCard
-                key={day.id}
-                dayId={day.id}
-                name={day.name}
-                category={day.category}
-                isHero={true}
-              />
-            );
-          }
-          return null;
-        })}
+          const isHero = day.id === nextDayId;
+          const isCompleted = store.isWorkoutCompleted(day.id);
 
-        {/* Bottom pair: Remaining days + Add Session */}
-        {day3 && nextDayId !== 3 && (
-          <DayCard
-            dayId={3}
-            name={day3.name}
-            category={day3.category}
-            isCompleted={getStatus(3) === "completed"}
-          />
-        )}
-        {day4 && nextDayId !== 4 && (
-          <DayCard
-            dayId={4}
-            name={day4.name}
-            category={day4.category}
-            isCompleted={getStatus(4) === "completed"}
-          />
-        )}
+          return (
+            <DayCard
+              key={day.id}
+              dayId={day.id}
+              name={day.name}
+              category={day.category}
+              isHero={isHero}
+              isCompleted={isCompleted}
+            />
+          );
+        })}
 
         <div className="aspect-[4/5] rounded-[2.5rem] border-2 border-dashed border-muted-foreground/20 flex flex-col items-center justify-center gap-2 group active:scale-95 transition-all cursor-pointer hover:border-primary/30 hover:bg-primary/5 bg-white/30 mb-8">
           <div className="w-12 h-12 rounded-full bg-muted/40 flex items-center justify-center text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
