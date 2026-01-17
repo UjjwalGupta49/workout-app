@@ -11,7 +11,7 @@ interface GreetingHeaderProps {
 
 export function GreetingHeader({
   userName = "Ujjwal",
-  weeklyGoal = 4,
+  weeklyGoal = 5,
 }: GreetingHeaderProps) {
   const { completedDays } = useWorkoutStore();
 
@@ -40,7 +40,8 @@ export function GreetingHeader({
   if (workoutsThisWeek === 0) streakMessage = "Start your week strong!";
   else if (workoutsThisWeek === 1) streakMessage = "Great start!";
   else if (workoutsThisWeek === 2) streakMessage = "Building momentum!";
-  else if (workoutsThisWeek === 3) streakMessage = "Almost there!";
+  else if (workoutsThisWeek === 3) streakMessage = "You're doing great!";
+  else if (workoutsThisWeek === 4) streakMessage = "Almost there!";
   else if (isGoalMet) streakMessage = "Goal achieved! 🎉";
 
   return (

@@ -8,7 +8,7 @@ interface WorkoutActions {
   toggleExercise: (
     dayId: number,
     exerciseId: string,
-    isComplete: boolean
+    isComplete: boolean,
   ) => void;
   clearProgress: () => void;
   getNextDayId: () => number;
@@ -77,23 +77,23 @@ export const useWorkoutStore = create<SessionState & WorkoutActions>()(
         // Find the last completed day
         const lastCompleted = completedDays[completedDays.length - 1].dayId;
 
-        // If all 4 are done, reset to 1
-        if (completedDays.length % 4 === 0) return 1;
+        // If all 5 are done, reset to 1
+        if (completedDays.length % 5 === 0) return 1;
 
-        return (lastCompleted % 4) + 1;
+        return (lastCompleted % 5) + 1;
       },
 
       isWorkoutCompleted: (dayId) => {
         const { completedDays } = get();
         // For simplicity, we check if the most recent completion cycle includes this day
         // Or more accurately, if it's the most recent day in its position
-        const cycleIndex = Math.floor((completedDays.length - 1) / 4);
-        const thisCycleCompletions = completedDays.slice(cycleIndex * 4);
+        const cycleIndex = Math.floor((completedDays.length - 1) / 5);
+        const thisCycleCompletions = completedDays.slice(cycleIndex * 5);
         return thisCycleCompletions.some((d) => d.dayId === dayId);
       },
     }),
     {
       name: "aura-gym-storage",
-    }
-  )
+    },
+  ),
 );
